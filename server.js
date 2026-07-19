@@ -68,10 +68,16 @@ const port = process.env.PORT || 5100;
 try {
   console.log("MONGO_URL:", process.env.MONGO_URL);
   await mongoose.connect(process.env.MONGO_URL);
-  app.listen(port, () => {
-    console.log(`server running on PORT ${port}...`);
-  });
+  if (!process.env.VERCEL) {
+    app.listen(port, () => {
+      console.log(`server running on PORT ${port}...`);
+    });
+  }
 } catch (error) {
   console.log(error);
-  process.exit(1);
+  if (!process.env.VERCEL) {
+    process.exit(1);
+  }
 }
+
+export default app;
