@@ -1,3 +1,94 @@
+# Job Tracker (Jobify)
+
+A full-stack MERN (MongoDB, Express, React, Node.js) application to track job applications.
+
+---
+
+## Quick Start & Setup Guide
+
+This guide will help you set up and run the Job-Tracker application locally in both development and production modes.
+
+### Prerequisites
+
+Ensure you have the following installed on your machine:
+*   [Node.js](https://nodejs.org/) (v16+ recommended)
+*   [MongoDB](https://www.mongodb.com/) (Local server or MongoDB Atlas URI)
+*   [Cloudinary Account](https://cloudinary.com/) (Free account for managing profile image uploads)
+
+---
+
+### Step 1: Install Dependencies
+
+The project provides a convenience script in the root `package.json` to install dependencies for both the backend (root directory) and the frontend (`/client` directory) in one command:
+
+```sh
+npm run setup-project
+```
+
+---
+
+### Step 2: Configure Environment Variables
+
+Create a `.env` file in the root directory. You can copy the template provided in [.env.example](file:///c:/Users/Timothy Kimani/Job-Tracker/.env.example):
+
+```sh
+cp .env.example .env
+```
+
+Open the newly created `.env` file and fill in your credentials:
+
+*   `PORT`: Port for the backend server (defaults to `5100`).
+*   `NODE_ENV`: Set to `development` or `production`.
+*   `MONGO_URL`: Your MongoDB connection URL (e.g., `mongodb://localhost:27017/jobify` or MongoDB Atlas URI).
+*   `JWT_SECRET`: A secret string used to sign JWT JSON Web Tokens.
+*   `JWT_EXPIRES_IN`: Token validity period (e.g., `1d`).
+*   `CLOUD_NAME`, `CLOUD_API_KEY`, `CLOUD_API_SECRET`: Your Cloudinary credentials for handling file/avatar uploads.
+
+---
+
+### Step 3: Run the Application
+
+#### Development Mode
+To run the frontend and backend concurrently with hot-reloading:
+
+```sh
+npm run dev
+```
+
+*   **Frontend Development Server**: Running on [http://localhost:5173/](http://localhost:5173/) (proxies api requests to backend)
+*   **Backend Server**: Running on [http://localhost:5100/](http://localhost:5100/)
+
+#### Production Mode
+To build the frontend production assets and run the unified Express server (which serves the compiled React app):
+
+1. **Build and Install Production Dependencies:**
+   ```sh
+   npm run setup-production-app
+   ```
+2. **Start the Unified Server:**
+   ```sh
+   npm start
+   ```
+   The entire application will be accessible at `http://localhost:5100/` (or whatever `PORT` you configured in `.env`).
+
+---
+
+### Step 4: Seed Database with Mock Data (Optional)
+
+If you want to populate your dashboard with pre-configured mock job data:
+
+1. Start the application and **Register a new user** with the email `john@gmail.com` using the registration page.
+2. Stop the application server (`Ctrl + C`).
+3. Run the database seed script:
+   ```sh
+   node populate.js
+   ```
+4. Start the application again, log in as `john@gmail.com`, and view the populated jobs in the dashboard.
+
+---
+
+## Course Notes & Detailed Implementation Tutorial
+
 #### Complete App
 
 [Jobify](https://jobify.live/)

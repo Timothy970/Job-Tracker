@@ -1,6 +1,8 @@
 import 'express-async-errors';
 import * as dotenv from 'dotenv';
 dotenv.config();
+import dns from 'dns';
+dns.setServers(['8.8.8.8', '1.1.1.1']);
 import express from 'express';
 const app = express();
 import morgan from 'morgan';
@@ -64,6 +66,7 @@ app.use(errorHandlerMiddleware);
 const port = process.env.PORT || 5100;
 
 try {
+  console.log("MONGO_URL:", process.env.MONGO_URL);
   await mongoose.connect(process.env.MONGO_URL);
   app.listen(port, () => {
     console.log(`server running on PORT ${port}...`);
