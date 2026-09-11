@@ -7,7 +7,8 @@ const Wrapper = styled.aside`
   .sidebar-container {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,9 +25,11 @@ const Wrapper = styled.aside`
   .content {
     background: var(--background-secondary-color);
     width: var(--fluid-width);
-    height: 95vh;
-    border-radius: var(--border-radius);
-    padding: 4rem 2rem;
+    max-width: 360px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-4);
+    padding: 3.5rem 2rem 2.5rem;
     position: relative;
     display: flex;
     align-items: center;
@@ -34,38 +37,65 @@ const Wrapper = styled.aside`
   }
   .close-btn {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 1.25rem;
+    right: 1.25rem;
     background: transparent;
     border-color: transparent;
-    font-size: 2rem;
-    color: var(--red-dark);
+    font-size: 1.5rem;
+    color: var(--grey-400);
     cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0.25rem;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition);
+  }
+  .close-btn:hover {
+    color: var(--red-dark);
+    background: var(--red-light);
+  }
+  .logo {
+    width: 130px;
+    height: auto;
+    margin-bottom: 1.5rem;
   }
   .nav-links {
-    padding-top: 2rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
   }
   .nav-link {
     display: flex;
     align-items: center;
     color: var(--text-secondary-color);
-    padding: 1rem 0;
+    padding: 0.85rem 1.25rem;
+    border-radius: var(--border-radius-sm);
     text-transform: capitalize;
+    font-weight: 500;
+    font-size: 1rem;
     transition: var(--transition);
   }
   .nav-link:hover {
-    color: var(--primary-500);
+    color: var(--primary-600);
+    background: rgba(59, 130, 246, 0.08);
   }
   .icon {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     margin-right: 1rem;
     display: grid;
     place-items: center;
   }
   .active {
-    color: var(--primary-500);
+    color: var(--white);
+    background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  }
+  .active:hover {
+    color: var(--white);
+  }
+  .active .icon {
+    color: var(--white);
   }
 `;
 export default Wrapper;

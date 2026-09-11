@@ -1,25 +1,34 @@
 import { Link, useRouteError } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/ErrorPage';
 import img from '../assets/images/not-found.svg';
+import { FiArrowLeft, FiAlertTriangle } from 'react-icons/fi';
+
 const Error = () => {
   const error = useRouteError();
-  console.log(error);
-  if (error.status === 404) {
+
+  if (error?.status === 404) {
     return (
       <Wrapper>
-        <div>
+        <div className='error-card'>
           <img src={img} alt='not found' />
-          <h3>Ohh! page not found</h3>
-          <p>we can't seem to find the page you are looking for</p>
-          <Link to='/dashboard'>back home</Link>
+          <h3>Page Not Found</h3>
+          <p>We couldn't find the page you are looking for. It might have been removed or the URL is incorrect.</p>
+          <Link to='/dashboard' className='btn back-btn'>
+            <FiArrowLeft /> Back to Dashboard
+          </Link>
         </div>
       </Wrapper>
     );
   }
   return (
     <Wrapper>
-      <div>
-        <h3>something went wrong</h3>
+      <div className='error-card'>
+        <FiAlertTriangle style={{ fontSize: '3rem', color: '#ef4444', marginBottom: '1rem' }} />
+        <h3>Something went wrong</h3>
+        <p>An unexpected error occurred. Please try refreshing or return to the dashboard.</p>
+        <Link to='/dashboard' className='btn back-btn'>
+          <FiArrowLeft /> Back to Dashboard
+        </Link>
       </div>
     </Wrapper>
   );

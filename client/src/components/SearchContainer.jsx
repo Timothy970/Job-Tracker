@@ -1,8 +1,9 @@
-import { FormRow, FormRowSelect, SubmitBtn } from '.';
+import { FormRow, FormRowSelect } from '.';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { Form, useSubmit, Link } from 'react-router-dom';
 import { JOB_TYPE, JOB_STATUS, JOB_SORT_BY } from '../../../utils/constants';
 import { useAllJobsContext } from '../pages/AllJobs';
+import { FiRotateCcw, FiSearch } from 'react-icons/fi';
 
 const SearchContainer = () => {
   const { searchValues } = useAllJobsContext();
@@ -16,17 +17,19 @@ const SearchContainer = () => {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         onChange(form);
-      }, 2000);
+      }, 500);
     };
   };
+
   return (
     <Wrapper>
       <Form className='form'>
-        <h5 className='form-title'>search form</h5>
+        <h5 className='form-title'>Search & Filter Applications</h5>
         <div className='form-center'>
           <FormRow
             type='search'
             name='search'
+            labelText='Search Keywords'
             defaultValue={search}
             onChange={debounce((form) => {
               submit(form);
@@ -53,14 +56,15 @@ const SearchContainer = () => {
           />
           <FormRowSelect
             name='sort'
+            labelText='Sort By'
             defaultValue={sort}
             list={[...Object.values(JOB_SORT_BY)]}
             onChange={(e) => {
               submit(e.currentTarget.form);
             }}
           />
-          <Link to='/dashboard/all-jobs' className='btn form-btn delete-btn'>
-            Reset Search Values
+          <Link to='/dashboard/all-jobs' className='btn reset-btn'>
+            <FiRotateCcw style={{ marginRight: '0.4rem' }} /> Reset Filters
           </Link>
         </div>
       </Form>

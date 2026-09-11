@@ -1,4 +1,5 @@
 import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 import { Link, Form } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Job';
 import JobInfo from './JobInfo';
@@ -34,11 +35,11 @@ const Job = ({
         </div>
         <footer className='actions'>
           <Link to={`../edit-job/${_id}`} className='btn edit-btn'>
-            Edit
+            <FiEdit2 /> Edit
           </Link>
           <Form method='post' action={`../delete-job/${_id}`}>
             <button type='submit' className='btn delete-btn'>
-              Delete
+              <FiTrash2 /> Delete
             </button>
           </Form>
         </footer>

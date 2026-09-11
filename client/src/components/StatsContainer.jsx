@@ -1,28 +1,29 @@
-import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from 'react-icons/fa';
+import { FaClock, FaCalendarCheck, FaTimesCircle } from 'react-icons/fa';
 import Wrapper from '../assets/wrappers/StatsContainer';
 import StatItem from './StatItem';
+
 const StatsContainer = ({ defaultStats }) => {
   const stats = [
     {
       title: 'pending applications',
       count: defaultStats?.pending || 0,
-      icon: <FaSuitcaseRolling />,
+      icon: <FaClock />,
       color: '#f59e0b',
-      bcg: '#fef3c7',
+      bcg: 'rgba(245, 158, 11, 0.15)',
     },
     {
       title: 'interviews scheduled',
       count: defaultStats?.interview || 0,
       icon: <FaCalendarCheck />,
-      color: '#647acb',
-      bcg: '#e0e8f9',
+      color: '#3b82f6',
+      bcg: 'rgba(59, 130, 246, 0.15)',
     },
     {
       title: 'jobs declined',
       count: defaultStats?.declined || 0,
-      icon: <FaBug />,
-      color: '#d66a6a',
-      bcg: '#ffeeee',
+      icon: <FaTimesCircle />,
+      color: '#ef4444',
+      bcg: 'rgba(239, 68, 68, 0.15)',
     },
   ];
   return (

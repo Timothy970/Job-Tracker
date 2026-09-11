@@ -3,18 +3,19 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  font-size: 0.875rem;
+
   .job-icon {
     font-size: 1rem;
-    margin-right: 1rem;
+    margin-right: 0.75rem;
     display: flex;
     align-items: center;
-    svg {
-      color: var(--text-secondary-color);
-    }
+    color: var(--primary-500);
   }
   .job-text {
     text-transform: capitalize;
-    letter-spacing: var(--letter-spacing);
+    color: var(--text-color);
+    font-weight: 500;
   }
 `;
 export default Wrapper;

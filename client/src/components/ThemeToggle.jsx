@@ -5,11 +5,11 @@ import { useDashboardContext } from '../pages/DashboardLayout';
 const ThemeToggle = () => {
   const { isDarkTheme, toggleDarkTheme } = useDashboardContext();
   return (
-    <Wrapper onClick={toggleDarkTheme}>
+    <Wrapper onClick={toggleDarkTheme} aria-label='Toggle light/dark mode'>
       {isDarkTheme ? (
-        <BsFillSunFill className='toggle-icon' />
+        <BsFillSunFill className='sun-icon' />
       ) : (
-        <BsFillMoonFill />
+        <BsFillMoonFill className='moon-icon' />
       )}
     </Wrapper>
   );
