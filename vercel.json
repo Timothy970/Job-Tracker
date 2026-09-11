@@ -19,7 +19,16 @@
       "dest": "server.js"
     },
     {
-      "handle": "filesystem"
+      "src": "/assets/(.*)",
+      "dest": "client/assets/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "client/favicon.ico"
+    },
+    {
+      "src": "/(.*\\.(?:js|css|svg|png|jpg|jpeg|gif|webp|ico|json|woff|woff2|ttf|eot))",
+      "dest": "client/$1"
     },
     {
       "src": "/(.*)",
