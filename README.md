@@ -17,16 +17,16 @@
 
 - **📊 Comprehensive Analytics & Data Visualizations**
   - Interactive monthly application trends with toggleable **Area Charts** and **Bar Charts**.
-  - Real-time **Doughnut / Status Breakdown Charts** comparing pending, interview, and declined counts.
+  - Real-time **Doughnut / Status Breakdown Charts** comparing pending, interview, accepted, and declined counts.
   - KPI Stat summary cards with responsive hover elevation.
 
 - **💼 End-to-End Application Tracking**
   - Create, view, edit, and delete job applications with company, position, status, job location, and job type.
-  - Distinct status pill badges with subtle dot indicators (`Pending`, `Interview`, `Declined`).
+  - Distinct status pill badges with subtle dot indicators (`Pending`, `Interview`, `Accepted`, `Declined`).
 
 - **🔍 Smart Search & Multi-Parametric Filtering**
   - Instant debounced keyword search across job titles and companies.
-  - Multi-criteria filtering by **Status** (`all`, `pending`, `interview`, `declined`), **Type** (`all`, `full-time`, `part-time`, `internship`), and **Sort Order** (`latest`, `oldest`, `a-z`, `z-a`).
+  - Multi-criteria filtering by **Status** (`all`, `pending`, `interview`, `accepted`, `declined`), **Type** (`all`, `full-time`, `part-time`, `internship`), and **Sort Order** (`latest`, `oldest`, `a-z`, `z-a`).
   - One-click filter reset.
 
 - **🌓 Dynamic Dark & Light Mode**

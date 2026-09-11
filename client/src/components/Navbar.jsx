@@ -4,15 +4,16 @@ import Logo from './Logo';
 import { useDashboardContext } from '../pages/DashboardLayout';
 import LogoutContainer from './LogoutContainer';
 import ThemeToggle from './ThemeToggle';
+
 const Navbar = () => {
   const { toggleSidebar } = useDashboardContext();
   return (
     <Wrapper>
       <div className='nav-center'>
-        <button type='button' className='toggle-btn' onClick={toggleSidebar}>
+        <button type='button' className='toggle-btn' onClick={toggleSidebar} aria-label='Toggle navigation menu'>
           <FaAlignLeft />
         </button>
-        <div>
+        <div className='nav-brand'>
           <Logo />
           <h4 className='logo-text'>dashboard</h4>
         </div>

@@ -49,7 +49,7 @@ const Admin = () => {
   const {
     users = 0,
     jobs = 0,
-    statusStats = { pending: 0, interview: 0, declined: 0 },
+    statusStats = { pending: 0, interview: 0, accepted: 0, declined: 0 },
     typeStats = {},
     monthlyApplications = [],
     topCompanies = [],
@@ -64,6 +64,7 @@ const Admin = () => {
   const pieData = [
     { name: 'Pending', value: statusStats.pending || 0, color: '#f59e0b' },
     { name: 'Interview', value: statusStats.interview || 0, color: '#3b82f6' },
+    { name: 'Accepted', value: statusStats.accepted || 0, color: '#10b981' },
     { name: 'Declined', value: statusStats.declined || 0, color: '#ef4444' },
   ].filter((item) => item.value > 0);
 
@@ -104,20 +105,27 @@ const Admin = () => {
         <StatItem
           title='Applications Tracked'
           count={jobs}
-          color='#10b981'
-          bcg='rgba(16, 185, 129, 0.15)'
+          color='#6366f1'
+          bcg='rgba(99, 102, 241, 0.15)'
           icon={<FaBriefcase />}
         />
         <StatItem
+          title='Offers Accepted'
+          count={statusStats.accepted || 0}
+          color='#10b981'
+          bcg='rgba(16, 185, 129, 0.15)'
+          icon={<FaCalendarCheck />}
+        />
+        <StatItem
           title='Interviews Scheduled'
-          count={statusStats.interview}
+          count={statusStats.interview || 0}
           color='#8b5cf6'
           bcg='rgba(139, 92, 246, 0.15)'
           icon={<FaCalendarCheck />}
         />
         <StatItem
           title='Pending Submissions'
-          count={statusStats.pending}
+          count={statusStats.pending || 0}
           color='#f59e0b'
           bcg='rgba(245, 158, 11, 0.15)'
           icon={<FaClock />}

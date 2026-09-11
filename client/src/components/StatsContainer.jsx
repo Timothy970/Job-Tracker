@@ -1,4 +1,4 @@
-import { FaClock, FaCalendarCheck, FaTimesCircle } from 'react-icons/fa';
+import { FaClock, FaCalendarCheck, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import Wrapper from '../assets/wrappers/StatsContainer';
 import StatItem from './StatItem';
 
@@ -17,6 +17,13 @@ const StatsContainer = ({ defaultStats }) => {
       icon: <FaCalendarCheck />,
       color: '#3b82f6',
       bcg: 'rgba(59, 130, 246, 0.15)',
+    },
+    {
+      title: 'jobs accepted / offers',
+      count: defaultStats?.accepted || 0,
+      icon: <FaCheckCircle />,
+      color: '#10b981',
+      bcg: 'rgba(16, 185, 129, 0.15)',
     },
     {
       title: 'jobs declined',

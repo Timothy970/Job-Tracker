@@ -80,6 +80,7 @@ const Wrapper = styled.div`
 const defaultStats = {
   pending: 0,
   interview: 0,
+  accepted: 0,
   declined: 0,
 };
 
@@ -94,6 +95,11 @@ const CombinedChart = ({ data = defaultStats }) => {
       status: 'Interview',
       count: data.interview || 0,
       color: '#3b82f6',
+    },
+    {
+      status: 'Accepted',
+      count: data.accepted || 0,
+      color: '#10b981',
     },
     {
       status: 'Declined',
@@ -112,6 +118,7 @@ const CombinedChart = ({ data = defaultStats }) => {
   const COLORS = {
     pending: '#f59e0b',
     interview: '#3b82f6',
+    accepted: '#10b981',
     declined: '#ef4444',
   };
 

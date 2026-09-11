@@ -43,14 +43,11 @@ const Wrapper = styled.nav`
     font-weight: 700;
     color: var(--text-color);
     letter-spacing: -0.02em;
+    text-transform: capitalize;
   }
-  .logo {
-    width: 110px;
-    max-width: 110px;
-    height: auto;
-    max-height: 38px;
-    object-fit: contain;
-    display: block;
+  .nav-brand {
+    display: flex;
+    align-items: center;
   }
   .btn-container {
     display: flex;
@@ -61,7 +58,7 @@ const Wrapper = styled.nav`
     .nav-center {
       width: 94%;
     }
-    .logo {
+    .nav-brand .logo-brand {
       display: none;
     }
     .logo-text {
@@ -69,12 +66,6 @@ const Wrapper = styled.nav`
     }
     .btn-container {
       gap: 0.75rem;
-    }
-  }
-  @media (max-width: 480px) {
-    .logo {
-      width: 90px;
-      max-width: 90px;
     }
   }
 `;

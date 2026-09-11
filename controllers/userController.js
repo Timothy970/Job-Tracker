@@ -28,6 +28,7 @@ export const getApplicationStats = async (req, res) => {
   const defaultStatusStats = {
     pending: statusStats.pending || 0,
     interview: statusStats.interview || 0,
+    accepted: statusStats.accepted || 0,
     declined: statusStats.declined || 0,
   };
 
