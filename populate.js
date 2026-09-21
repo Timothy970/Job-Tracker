@@ -1,9 +1,7 @@
-import { readFile } from 'fs/promises';
+import { readFile } from 'node:fs/promises';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
-import dns from 'dns';
-dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 import Job from './models/JobModel.js';
 import User from './models/UserModel.js';

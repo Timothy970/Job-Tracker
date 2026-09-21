@@ -4,9 +4,15 @@ import {
   NotFoundError,
   UnauthorizedError,
 } from '../errors/customErrors.js';
-import { JOB_STATUS, JOB_TYPE } from '../utils/constants.js';
+import {
+  JOB_STATUS,
+  JOB_TYPE,
+  PROJECT_TYPE,
+  PROJECT_STATUS,
+} from '../utils/constants.js';
 import mongoose from 'mongoose';
 import Job from '../models/JobModel.js';
+import Project from '../models/ProjectModel.js';
 import User from '../models/UserModel.js';
 
 const withValidationErrors = (validateValues) => {
@@ -19,7 +25,10 @@ const withValidationErrors = (validateValues) => {
 
         const firstMessage = errorMessages[0];
         console.log(Object.getPrototypeOf(firstMessage));
-        if (errorMessages[0].startsWith('no job')) {
+        if (
+          errorMessages[0].startsWith('no job') ||
+          errorMessages[0].startsWith('no project')
+        ) {
           throw new NotFoundError(errorMessages);
         }
         if (errorMessages[0].startsWith('not authorized')) {
@@ -52,6 +61,32 @@ export const validateIdParam = withValidationErrors([
     if (!job) throw new NotFoundError(`no job with id ${value}`);
     const isAdmin = req.user.role === 'admin';
     const isOwner = req.user.userId === job.createdBy.toString();
+
+    if (!isAdmin && !isOwner)
+      throw new UnauthorizedError('not authorized to access this route');
+  }),
+]);
+
+export const validateProjectInput = withValidationErrors([
+  body('title').notEmpty().withMessage('project title is required'),
+  body('projectType')
+    .optional()
+    .isIn(Object.values(PROJECT_TYPE))
+    .withMessage('invalid project type'),
+  body('projectStatus')
+    .optional()
+    .isIn(Object.values(PROJECT_STATUS))
+    .withMessage('invalid project status'),
+]);
+
+export const validateProjectIdParam = withValidationErrors([
+  param('id').custom(async (value, { req }) => {
+    const isValidMongoId = mongoose.Types.ObjectId.isValid(value);
+    if (!isValidMongoId) throw new BadRequestError('invalid MongoDB id');
+    const project = await Project.findById(value);
+    if (!project) throw new NotFoundError(`no project with id ${value}`);
+    const isAdmin = req.user.role === 'admin';
+    const isOwner = req.user.userId === project.createdBy.toString();
 
     if (!isAdmin && !isOwner)
       throw new UnauthorizedError('not authorized to access this route');

@@ -84,6 +84,12 @@ const defaultStats = {
   declined: 0,
 };
 
+const renderLegendText = (value) => (
+  <span style={{ color: 'var(--text-color)', fontWeight: 500, fontSize: '0.875rem' }}>
+    {value}
+  </span>
+);
+
 const CombinedChart = ({ data = defaultStats }) => {
   const barChartData = [
     {
@@ -154,8 +160,8 @@ const CombinedChart = ({ data = defaultStats }) => {
                     labelStyle={{ color: 'var(--text-color)', fontWeight: 600 }}
                   />
                   <Bar dataKey='count' barSize={55} radius={[6, 6, 0, 0]}>
-                    {barChartData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    {barChartData.map((entry) => (
+                      <Cell key={entry.status} fill={entry.color} />
                     ))}
                   </Bar>
                 </BarChart>
@@ -175,9 +181,9 @@ const CombinedChart = ({ data = defaultStats }) => {
                     paddingAngle={4}
                     dataKey='value'
                   >
-                    {pieChartData.map((entry, index) => (
+                    {pieChartData.map((entry) => (
                       <Cell
-                        key={`cell-${index}`}
+                        key={entry.name}
                         fill={COLORS[entry.name.toLowerCase()] || '#3b82f6'}
                       />
                     ))}
@@ -195,11 +201,7 @@ const CombinedChart = ({ data = defaultStats }) => {
                   <Legend
                     verticalAlign='bottom'
                     height={36}
-                    formatter={(value) => (
-                      <span style={{ color: 'var(--text-color)', fontWeight: 500, fontSize: '0.875rem' }}>
-                        {value}
-                      </span>
-                    )}
+                    formatter={renderLegendText}
                   />
                 </PieChart>
               </ResponsiveContainer>

@@ -10,3 +10,9 @@ export { default as AddJob } from './AddJob';
 export { default as EditJob } from './EditJob';
 export { default as Profile } from './Profile';
 export { default as Admin } from './Admin';
+export { default as AddProject } from './AddProject';
+export { default as AllProjects } from './AllProjects';
+export { default as EditProject } from './EditProject';
+export { default as ProjectStats } from './ProjectStats';
+export { default as DashboardOverview } from './DashboardOverview';
+

@@ -1,8 +1,6 @@
 import 'express-async-errors';
 import * as dotenv from 'dotenv';
 dotenv.config();
-import dns from 'dns';
-dns.setServers(['8.8.8.8', '1.1.1.1']);
 import express from 'express';
 const app = express();
 import morgan from 'morgan';
@@ -14,12 +12,12 @@ import mongoSanitize from 'express-mongo-sanitize';
 
 // routers
 import jobRouter from './routes/jobRouter.js';
+import projectRouter from './routes/projectRouter.js';
 import authRouter from './routes/authRouter.js';
 import userRouter from './routes/userRouter.js';
 // public
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import path from 'path';
+import path, { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // middleware
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
@@ -46,6 +44,7 @@ app.get('/api/v1/test', (req, res) => {
 });
 
 app.use('/api/v1/jobs', authenticateUser, jobRouter);
+app.use('/api/v1/projects', authenticateUser, projectRouter);
 app.use('/api/v1/users', authenticateUser, userRouter);
 app.use('/api/v1/auth', authRouter);
 

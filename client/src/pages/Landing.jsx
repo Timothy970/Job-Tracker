@@ -2,7 +2,7 @@ import Wrapper from '../assets/wrappers/LandingPage';
 import main from '../assets/images/side.svg';
 import { Link } from 'react-router-dom';
 import { Logo } from '../components';
-import { FiTrendingUp, FiCheckCircle, FiMoon, FiPieChart } from 'react-icons/fi';
+import { FiCheckCircle, FiMoon, FiPieChart } from 'react-icons/fi';
 
 const Landing = () => {
   return (
@@ -20,9 +20,6 @@ const Landing = () => {
       </nav>
       <div className='container page'>
         <div className='info'>
-          <div className='badge'>
-            <FiTrendingUp /> The Ultimate Job Search Pipeline
-          </div>
           <h1>
             Track applications. <br />
             <span>Land your dream job.</span>

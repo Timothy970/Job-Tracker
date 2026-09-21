@@ -39,9 +39,22 @@ export const loader = async () => {
     const response = await customFetch.get('/users/admin/app-stats');
     return response.data;
   } catch (error) {
+    console.error(error);
     toast.error('You are not authorized to view this page');
     return redirect('/dashboard');
   }
+};
+
+const renderLegendText = (value) => (
+  <span style={{ color: 'var(--text-color)', fontWeight: 500, fontSize: '0.85rem' }}>
+    {value}
+  </span>
+);
+
+const getContractColor = (type) => {
+  if (type === 'full-time') return 'linear-gradient(90deg, #10b981, #34d399)';
+  if (type === 'part-time') return 'linear-gradient(90deg, #3b82f6, #60a5fa)';
+  return 'linear-gradient(90deg, #8b5cf6, #a78bfa)';
 };
 
 const Admin = () => {
@@ -217,8 +230,8 @@ const Admin = () => {
                   paddingAngle={4}
                   dataKey='value'
                 >
-                  {pieData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  {pieData.map((entry) => (
+                    <Cell key={entry.name} fill={entry.color} />
                   ))}
                 </Pie>
                 <Tooltip
@@ -233,11 +246,7 @@ const Admin = () => {
                 <Legend
                   verticalAlign='bottom'
                   height={36}
-                  formatter={(value) => (
-                    <span style={{ color: 'var(--text-color)', fontWeight: 500, fontSize: '0.85rem' }}>
-                      {value}
-                    </span>
-                  )}
+                  formatter={renderLegendText}
                 />
               </PieChart>
             </ResponsiveContainer>
@@ -329,12 +338,7 @@ const Admin = () => {
             {['full-time', 'part-time', 'internship'].map((type) => {
               const count = typeStats[type] || 0;
               const percent = Math.round((count / totalTypes) * 100);
-              const color =
-                type === 'full-time'
-                  ? 'linear-gradient(90deg, #10b981, #34d399)'
-                  : type === 'part-time'
-                  ? 'linear-gradient(90deg, #3b82f6, #60a5fa)'
-                  : 'linear-gradient(90deg, #8b5cf6, #a78bfa)';
+              const color = getContractColor(type);
               return (
                 <div key={type} className='rank-item'>
                   <div className='rank-info'>

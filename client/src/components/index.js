@@ -11,3 +11,8 @@ export { default as SubmitBtn } from './SubmitBtn';
 export { default as ChartsContainer } from './ChartsContainer';
 export { default as StatsContainer } from './StatsContainer';
 export { default as Loading } from './Loading';
+export { default as ProjectCard } from './ProjectCard';
+export { default as ProjectsContainer } from './ProjectsContainer';
+export { default as ProjectSearchContainer } from './ProjectSearchContainer';
+export { default as ProjectEnvModal } from './ProjectEnvModal';
+

@@ -1,13 +1,21 @@
 import styled from 'styled-components';
-import { FormRow, FormRowSelect } from '.';
 import { Form, useSubmit, Link } from 'react-router-dom';
-import { JOB_TYPE, JOB_STATUS, JOB_SORT_BY } from '../../../utils/constants';
-import { useAllJobsContext } from '../pages/AllJobs';
+import FormRow from './FormRow';
+import FormRowSelect from './FormRowSelect';
+import { useAllProjectsContext } from '../pages/AllProjects';
 import { FiRotateCcw, FiFilter } from 'react-icons/fi';
 
-const SearchContainer = () => {
-  const { searchValues } = useAllJobsContext();
-  const { search = '', jobStatus = 'all', jobType = 'all', sort = 'newest' } = searchValues;
+const ProjectSearchContainer = () => {
+  const { searchValues } = useAllProjectsContext();
+  const {
+    search = '',
+    projectType = 'all',
+    projectStatus = 'all',
+    componentType = 'all',
+    deploymentStatus = 'all',
+    sort = 'newest',
+  } = searchValues;
+
   const submit = useSubmit();
 
   const debounce = (onChange) => {
@@ -21,16 +29,59 @@ const SearchContainer = () => {
     };
   };
 
+  const projectTypeOptions = [
+    'all',
+    'monolithic',
+    'be_fe',
+    'mobile',
+    'be_fe_mobile',
+    'be_mobile',
+    'fe_mobile',
+    'microservice',
+    'sdk',
+    'other',
+  ];
+
+  const projectStatusOptions = [
+    'all',
+    'planning',
+    'in-progress',
+    'completed',
+    'maintained',
+    'archived',
+  ];
+
+  const componentTypeOptions = [
+    'all',
+    'app',
+    'backend',
+    'frontend',
+    'mobile',
+    'service',
+    'sdk',
+    'other',
+  ];
+
+  const deploymentStatusOptions = ['all', 'deployed', 'not-deployed'];
+
+  const sortOptions = [
+    'newest',
+    'oldest',
+    'a-z',
+    'z-a',
+    'recently-updated',
+  ];
+
   return (
     <Wrapper>
       <Form className='form'>
         <div className='filter-header'>
           <div className='title-group'>
             <FiFilter className='filter-icon' />
-            <h5>Filter Applications</h5>
+            <h5>Filter Projects</h5>
           </div>
           <Link
-            to='/dashboard/all-jobs'
+            to='/dashboard/all-projects'
             className='btn reset-btn'
             title='Reset Filters'
           >
@@ -43,7 +94,7 @@ const SearchContainer = () => {
           <FormRow
             type='search'
             name='search'
-            labelText='Search Keywords'
+            labelText='Search'
             defaultValue={search}
             onChange={debounce((form) => {
               submit(form);
@@ -51,30 +102,50 @@ const SearchContainer = () => {
           />
 
           <FormRowSelect
-            labelText='Job Status'
-            name='jobStatus'
-            list={['all', ...Object.values(JOB_STATUS)]}
-            defaultValue={jobStatus}
+            labelText='Project Type'
+            name='projectType'
+            list={projectTypeOptions}
+            defaultValue={projectType}
             onChange={(e) => {
               submit(e.currentTarget.form);
             }}
           />
 
           <FormRowSelect
-            labelText='Job Type'
-            name='jobType'
-            list={['all', ...Object.values(JOB_TYPE)]}
-            defaultValue={jobType}
+            labelText='Project Status'
+            name='projectStatus'
+            list={projectStatusOptions}
+            defaultValue={projectStatus}
             onChange={(e) => {
               submit(e.currentTarget.form);
             }}
           />
 
           <FormRowSelect
-            name='sort'
+            labelText='Component'
+            name='componentType'
+            list={componentTypeOptions}
+            defaultValue={componentType}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
+          />
+
+          <FormRowSelect
+            labelText='Deployment'
+            name='deploymentStatus'
+            list={deploymentStatusOptions}
+            defaultValue={deploymentStatus}
+            onChange={(e) => {
+              submit(e.currentTarget.form);
+            }}
+          />
+
+          <FormRowSelect
             labelText='Sort By'
+            name='sort'
+            list={sortOptions}
             defaultValue={sort}
-            list={Object.values(JOB_SORT_BY)}
             onChange={(e) => {
               submit(e.currentTarget.form);
             }}
@@ -184,8 +255,11 @@ const Wrapper = styled.section`
     @media (min-width: 576px) {
       grid-template-columns: repeat(2, 1fr);
     }
-    @media (min-width: 992px) {
-      grid-template-columns: 1.4fr repeat(3, 1fr);
+    @media (min-width: 868px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 1200px) {
+      grid-template-columns: 1.4fr repeat(5, 1fr);
     }
   }
 
@@ -219,4 +293,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default SearchContainer;
+export default ProjectSearchContainer;

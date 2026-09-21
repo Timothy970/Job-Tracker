@@ -3,7 +3,7 @@ import Wrapper from '../assets/wrappers/ErrorPage';
 import img from '../assets/images/not-found.svg';
 import { FiArrowLeft, FiAlertTriangle } from 'react-icons/fi';
 
-const Error = () => {
+const ErrorPage = () => {
   const error = useRouteError();
 
   if (error?.status === 404) {
@@ -33,4 +33,4 @@ const Error = () => {
     </Wrapper>
   );
 };
-export default Error;
+export default ErrorPage;

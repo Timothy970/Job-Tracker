@@ -12,7 +12,10 @@ const FormRow = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === 'password';
-  const inputType = isPassword ? (showPassword ? 'text' : 'password') : type;
+  let inputType = type;
+  if (isPassword) {
+    inputType = showPassword ? 'text' : 'password';
+  }
 
   return (
     <div className='form-row'>

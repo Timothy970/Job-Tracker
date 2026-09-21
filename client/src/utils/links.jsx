@@ -1,37 +1,91 @@
-import React from 'react';
-
+import { MdOutlineDashboard, MdQueryStats, MdAdminPanelSettings } from 'react-icons/md';
 import { IoBarChartSharp } from 'react-icons/io5';
-import { MdQueryStats } from 'react-icons/md';
-import { FaWpforms } from 'react-icons/fa';
+import { FaWpforms, FaLaptopCode, FaFolderPlus, FaBriefcase, FaCodeBranch } from 'react-icons/fa';
 import { ImProfile } from 'react-icons/im';
-import { MdAdminPanelSettings } from 'react-icons/md';
+import { AiOutlineFundProjectionScreen } from 'react-icons/ai';
 
-const links = [
+export const linkGroups = [
   {
-    text: 'add job',
-    path: '.',
-    icon: <FaWpforms />,
+    category: 'Overview',
+    items: [
+      {
+        text: 'overview',
+        path: '.',
+        icon: <MdOutlineDashboard />,
+        module: 'overview',
+      },
+    ],
   },
   {
-    text: 'all jobs',
-    path: 'all-jobs',
-    icon: <MdQueryStats />,
+    category: 'Jobs Tracker',
+    icon: <FaBriefcase />,
+    module: 'jobs',
+    items: [
+      {
+        text: 'all jobs',
+        path: 'all-jobs',
+        icon: <MdQueryStats />,
+        module: 'jobs',
+      },
+      {
+        text: 'add job',
+        path: 'add-job',
+        icon: <FaWpforms />,
+        module: 'jobs',
+      },
+      {
+        text: 'job stats',
+        path: 'stats',
+        icon: <IoBarChartSharp />,
+        module: 'jobs',
+      },
+    ],
   },
   {
-    text: 'stats',
-    path: 'stats',
-    icon: <IoBarChartSharp />,
+    category: 'Projects Portfolio',
+    icon: <FaCodeBranch />,
+    module: 'projects',
+    items: [
+      {
+        text: 'all projects',
+        path: 'all-projects',
+        icon: <FaLaptopCode />,
+        module: 'projects',
+      },
+      {
+        text: 'add project',
+        path: 'add-project',
+        icon: <FaFolderPlus />,
+        module: 'projects',
+      },
+      {
+        text: 'project stats',
+        path: 'project-stats',
+        icon: <AiOutlineFundProjectionScreen />,
+        module: 'projects',
+      },
+    ],
   },
   {
-    text: 'profile',
-    path: 'profile',
-    icon: <ImProfile />,
-  },
-  {
-    text: 'admin',
-    path: 'admin',
-    icon: <MdAdminPanelSettings />,
+    category: 'Account & System',
+    items: [
+      {
+        text: 'profile',
+        path: 'profile',
+        icon: <ImProfile />,
+        module: 'account',
+      },
+      {
+        text: 'admin',
+        path: 'admin',
+        icon: <MdAdminPanelSettings />,
+        module: 'account',
+      },
+    ],
   },
 ];
 
+const links = linkGroups.flatMap((group) => group.items);
+
 export default links;
+

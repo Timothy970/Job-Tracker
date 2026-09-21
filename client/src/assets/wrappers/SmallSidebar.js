@@ -25,11 +25,13 @@ const Wrapper = styled.aside`
   .content {
     background: var(--background-secondary-color);
     width: var(--fluid-width);
-    max-width: 360px;
+    max-width: 380px;
+    max-height: 90vh;
+    overflow-y: auto;
     border-radius: var(--border-radius-lg);
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-4);
-    padding: 3.5rem 2rem 2.5rem;
+    padding: 3rem 1.75rem 2rem;
     position: relative;
     display: flex;
     align-items: center;
@@ -37,8 +39,8 @@ const Wrapper = styled.aside`
   }
   .close-btn {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
+    top: 1rem;
+    right: 1rem;
     background: transparent;
     border-color: transparent;
     font-size: 1.5rem;
@@ -59,21 +61,54 @@ const Wrapper = styled.aside`
     height: auto;
     margin-bottom: 1.5rem;
   }
+  .nav-groups {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .nav-group-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0 0.5rem 0.2rem;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--grey-400);
+  }
+  .group-icon {
+    font-size: 0.8rem;
+    display: grid;
+    place-items: center;
+  }
+  .nav-group-jobs .nav-group-header {
+    color: #3b82f6;
+  }
+  .nav-group-projects .nav-group-header {
+    color: #10b981;
+  }
   .nav-links {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
   .nav-link {
     display: flex;
     align-items: center;
     color: var(--text-secondary-color);
-    padding: 0.85rem 1.25rem;
+    padding: 0.7rem 1rem;
     border-radius: var(--border-radius-sm);
     text-transform: capitalize;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: var(--transition);
   }
   .nav-link:hover {
@@ -81,15 +116,21 @@ const Wrapper = styled.aside`
     background: rgba(59, 130, 246, 0.08);
   }
   .icon {
-    font-size: 1.35rem;
-    margin-right: 1rem;
+    font-size: 1.2rem;
+    margin-right: 0.85rem;
     display: grid;
     place-items: center;
   }
   .active {
-    color: var(--white);
-    background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%);
+    color: var(--white) !important;
+    background: linear-gradient(135deg, var(--primary-500) 0%, var(--primary-600) 100%) !important;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  }
+  .active.nav-link-jobs {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%) !important;
+  }
+  .active.nav-link-projects {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
   }
   .active:hover {
     color: var(--white);
